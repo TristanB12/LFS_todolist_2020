@@ -9,6 +9,8 @@
 
 <script>
 
+import axios from 'axios'
+
 export default {
   name: 'App',
   components: {
@@ -23,7 +25,13 @@ export default {
   },
   methods: {
     addMyNumbers() {
-      axios.get('http://localhost:3000/todo/add')
+      axios.post('http://localhost:3000/todo/add', {
+        a: parseInt(this.nb1, 10),
+        b: parseInt(this.nb2, 10),
+      })
+      .then(response => {
+        this.result = response.data.add;
+      })
     }
   },
 }
