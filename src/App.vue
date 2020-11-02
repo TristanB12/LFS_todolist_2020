@@ -1,18 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <input class="first-number" v-model="nb1">
+    <input class="second-number" v-model="nb2">
+    <button @click="addMyNumbers">send</button>
+    <div class="result">{{ result }}</div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+
+  },
+  data() {
+    return {
+      nb1: 0,
+      nb2: 0,
+      result: 0,
+    }
+  },
+  methods: {
+    addMyNumbers() {
+      axios.get('http://localhost:3000/todo/add')
+    }
+  },
 }
 </script>
 
@@ -24,5 +37,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.main-title {
+  font-size: 70px;
+  text-decoration: underline;
 }
 </style>
