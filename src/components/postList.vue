@@ -1,5 +1,5 @@
 <template>
-    <div class="postList">
+    <div class="post-list">
         <postItem v-for="item in postList" :key="item.id" :postItem="item"></postItem>
     </div>
 </template>
@@ -22,5 +22,9 @@ import postItem from '@/components/postItem.vue';
 </script>
 
 <style lang="scss" scoped>
-
+.post-list {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
 </style>

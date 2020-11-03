@@ -1,1 +1,32 @@
-vb
+<template>
+    <div class="post-content">
+        <p>{{ postContent.text }}</p>
+        <img :src="profilePicturePath" alt="">
+    </div>
+</template>
+
+<script>
+    export default {
+        name: 'postContent',
+        props: {
+            postContent: {
+                type: Object,
+                default: () => {},
+            },
+        },
+        computed: {
+            profilePicturePath() {
+                if (!this.postContent.photo)
+                    return;
+                return require(`../assets/${this.postContent.photo}.jpg`);
+            }
+        },
+    }
+</script>
+
+<style lang="scss" scoped>
+p {
+    color: #808e9b;
+    font-size: 18px;
+}
+</style>

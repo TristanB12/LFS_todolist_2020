@@ -31,15 +31,31 @@
 .circular-image {
     display: inline-block;
     position: relative;
+    margin-right: 8px;
     width: 50px;
     height: 50px;
     overflow: hidden;
     border-radius: 50%;
-    border: 3px solid black;
+    border: 3px solid #40739e;
 }
 
 .profile-picture {
     width: auto;
     height: 100%;
 }
+
+.post-user {
+    display: flex;
+    margin: 5px;
+}
+
+.post-user h4 {
+    color: #d2dae2;
+}
+
+.post-user h4:hover {
+    text-decoration: underline #d2dae2;
+    cursor: pointer;
+}
+
 </style>
