@@ -1,53 +1,39 @@
 <template>
   <div id="app">
     <postList :postList="post_list"></postList>
+    <postAdd></postAdd>
   </div>
 </template>
 
 <script>
 import postList from '@/components/postList.vue';
+import postAdd from '@/components/postAdd.vue';
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    postList
+    postList,
+    postAdd,
   },
   data() {
     return {
-      post_list: [
-        {
-          post_user: {
-            username: 'ChrisDiablo12',
-            profile_picture: 'chris',
-          },
-          post_content: {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis sagittis lacus. Mauris ullamcorper pharetra nulla et tincidunt. Nullam in mauris in metus finibus porttitor. Morbi sit amet ex in tortor semper facilisis. Curabitur ut elit sed nunc vestibulum finibus. Etiam quis blandit eros. Maecenas maximus imperdiet tristique. Nam sit amet mauris quis ipsum rutrum iaculis sed elementum nulla. Donec porttitor tristique ex vitae elementum. Duis egestas porttitor purus, non consectetur nisl accumsan quis.',
-            photo: null,
-          },
-          stats: {
-            likes: 521,
-            shares: 23,
-          }
-        },
-        {
-          post_user: {
-            username: 'BradBittxXx',
-            profile_picture: 'bradpitt',
-          },
-          post_content: {
-            text: 'LNullam in mauris in metus finibus porttitor. Morbi sit amet ex in tortor semper facilisis. Curabitur ut elit sed nunc vestibulum finibus. Etiam quis blandit eros. Maecenas maximus imperdiet tristique. Nam sit amet mauris quis ipsum rutrum iaculis sed elementum nulla. Donec porttitor tristique ex vitae elementum. Duis egestas porttitor purus, non consectetur nisl accumsan quis.',
-            photo: null,
-          },
-          stats: {
-            likes: 20512,
-            shares: 2369,
-          }
-        }
-      ]
+      post_list: [],
     }
   },
   methods: {
+    getPosts() {
+      axios.get('http://localhost:3000/api/posts')
+          .then(response => (this.post_list = response.data.posts))
+          .catch(error => (console.log(error)));
+    }
+  },
+  created () {
+    this.getPosts();
+  },
 
+  beforeUpdate() {
+    this.getPosts();
   },
 }
 </script>
