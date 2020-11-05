@@ -3,7 +3,8 @@
         <postUser :postUser="postItem.post_user"></postUser>
         <postContent :postContent="postItem.post_content"></postContent>
         <postStats :postStats="postItem.stats" :likedStatus="postItem.liked"
-                    @post-liked="likeThisPost"></postStats>
+                    @post-liked="likeThisPost"
+                    @post-unliked="unlikeThisPost" ></postStats>
     </div>
 </template>
 
