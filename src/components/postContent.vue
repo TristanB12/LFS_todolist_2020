@@ -1,7 +1,7 @@
 <template>
     <div class="post-content">
         <p>{{ postContent.text }}</p>
-        <img :src="profilePicturePath" alt="">
+        <img :src="picturePath" alt="">
     </div>
 </template>
 
@@ -15,7 +15,7 @@
             },
         },
         computed: {
-            profilePicturePath() {
+            picturePath() {
                 if (!this.postContent.photo)
                     return;
                 return require(`../assets/${this.postContent.photo}.jpg`);
@@ -24,7 +24,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 p {
     color: #808e9b;
     font-size: 18px;

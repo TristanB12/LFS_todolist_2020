@@ -21,7 +21,7 @@ import postItem from '@/components/postItem.vue';
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 .post-list {
     display: flex;
     flex-direction: column;

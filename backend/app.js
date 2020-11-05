@@ -30,6 +30,24 @@ app.post('/api/posts/add', (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 });
 
+app.post('/api/posts/like', (req, res, next) => {
+    Post.updateOne({_id: req.body.id}, {stats: req.body.stats, liked: true, _id: req.body.id})
+        .then(() => res.status(200).json({message: 'post liked'}))
+        .catch(error => res.status(400).json({error}));
+});
+
+app.post('/api/posts/unlike', (req, res, next) => {
+    Post.updateOne({_id: req.body.id}, {stats: req.body.stats, liked: false, _id: req.body.id})
+        .then(() => res.status(200).json({message: 'post liked'}))
+        .catch(error => res.status(400).json({error}));
+});
+
+app.use('/api/reset', (req, res, next) => {
+    Post.deleteMany({ photo: null })
+        .then(() => res.status(200).json({message: 'data base reseted'}))
+        .catch(error => res.status(400).json({error}));
+});
+
 app.use('/api/posts', (req, res, next) => {
     Post.find()
         .then(posts => res.status(200).json({ posts }))

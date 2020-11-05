@@ -17,6 +17,8 @@ import axios from 'axios'
         },
         methods: {
             addNewPost() {
+                if(this.post_text === '')
+                    return;
                 const post = {
                     post_user: {
                         username: 'Me',
@@ -29,7 +31,8 @@ import axios from 'axios'
                     stats: {
                         likes: 0,
                         shares: 0,
-                    }
+                    },
+                    liked: false,
                 }
                 this.post_text = '';
                 axios.post('http://localhost:3000/api/posts/add', post)
@@ -40,6 +43,6 @@ import axios from 'axios'
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 
 </style>

@@ -2,6 +2,7 @@
   <div id="app">
     <postList :postList="post_list"></postList>
     <postAdd></postAdd>
+    <button @click="resetDataBase">reset data base</button>
   </div>
 </template>
 
@@ -26,7 +27,13 @@ export default {
       axios.get('http://localhost:3000/api/posts')
           .then(response => (this.post_list = response.data.posts))
           .catch(error => (console.log(error)));
-    }
+    },
+    resetDataBase() {
+      axios.get('http://localhost:3000/api/reset')
+          .then(response => (console.log(response)))
+          .catch(error => (console.log(error)));
+      this.post_list = [];
+    },
   },
   created () {
     this.getPosts();

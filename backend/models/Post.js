@@ -13,6 +13,7 @@ const postSchema = mongoose.Schema({
         likes: {type: Number, required: true},
         shares: {type: Number, required: true},
     },
+    liked: {type: Boolean, required: true},
 });
 
 module.exports = mongoose.model('Post', postSchema);

@@ -26,7 +26,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 
 .circular-image {
     display: inline-block;

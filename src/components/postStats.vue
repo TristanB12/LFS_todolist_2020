@@ -1,11 +1,17 @@
 <template>
     <div class="post-stats">
         <div class="likes">
-            <img src="../assets/like_before.png" alt="like button" class="like-button">
+            <img v-if="!likedStatus" src="../assets/like_before.png" alt="like button"
+                class="like-button"
+                @click="$emit('post-liked')">
+            <img v-else src="../assets/like.png" alt="like button"
+                class="like-button"
+                @click="$emit('post-unliked')">
             <h4>{{ postStats.likes }}</h4>
         </div>
         <div class="shares">
-            <img src="../assets/share_before.png" alt="like button" class="share-button">
+            <img src="../assets/share_before.png" alt="share button"
+                class="share-button">
             <h4>{{ postStats.shares }}</h4>
         </div>
     </div>
@@ -19,11 +25,18 @@
                 type: Object,
                 default: () => {},
             },
+            likedStatus: {
+                type: Boolean,
+                default: false,
+            }
+        },
+        methods: {
+
         },
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 .post-stats {
     display: flex;
     justify-content: space-around;
@@ -41,6 +54,10 @@
 img {
     width: 50px;
     height: 50px;
+}
+
+img:hover {
+    cursor: pointer;
 }
 
 h4 {
