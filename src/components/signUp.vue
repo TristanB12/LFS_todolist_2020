@@ -1,12 +1,12 @@
 <template>
     <div class="sign-up">
         <h2>Create your account</h2>
-        <input type="text" placeholder="username" v-model="username_input">
-        <input type="text" placeholder="mail" v-model="mail_input">
+        <input type="text" placeholder="Username" v-model="username_input">
+        <input type="text" placeholder="Mail" v-model="mail_input">
         <p class="error-message" v-if="!mail_valid">use a correct mail adress format</p>
-        <input type="password" placeholder="password" v-model="password_input">
+        <input type="password" placeholder="Password" v-model="password_input">
         <p class="error-message" v-if="!password_valid">password should contain:<br>one digit<br>one lowercase<br>one uppercase<br>at least 8 characters</p>
-        <input class="confirm-password" type="password" placeholder="confirm password" v-model="confirm_password_input">
+        <input class="confirm-password" type="password" placeholder="Confirm password" v-model="confirm_password_input">
         <p class="error-message" v-if="!confirm_password_valid">passwords are differents</p>
         <button v-if="can_be_create" class="create-account">Create Account</button>
     </div>
