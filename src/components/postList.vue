@@ -26,6 +26,5 @@ import postItem from '@/components/postItem.vue';
     display: flex;
     flex-direction: column-reverse;
     text-align: center;
-    bottom: 0;
 }
 </style>

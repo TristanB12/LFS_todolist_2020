@@ -58,10 +58,11 @@ import axios from 'axios'
 
 .post-item {
     border: 5px solid #487eb0;
-    width: 30%;
+    width: 200%;
     margin: 10px auto 10px auto;
     border-radius: 15px;
     background-color: #1e272e;
     overflow: hidden;
+    box-shadow: 0px 5px 10px black;
 }
 </style>

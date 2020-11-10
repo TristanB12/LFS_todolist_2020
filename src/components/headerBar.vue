@@ -17,9 +17,7 @@
     display: flex;
     justify-content: space-between;
     background-color: white;
-    position: fixed;
     width: 100%;
-    top: 0;
     box-shadow: 0px 0px 20px black;
 }
 

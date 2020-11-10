@@ -24,11 +24,5 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 60px;
-}
-
-.main-title {
-  font-size: 70px;
-  text-decoration: underline;
 }
 </style>

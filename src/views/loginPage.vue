@@ -19,6 +19,7 @@
     background-color: white;
     width: 30%;
     margin: auto;
+    margin-top: 5%;
     border-radius: 20px;
     box-shadow: 0px 0px 20px #1e272e;
     display: flex;

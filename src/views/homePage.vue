@@ -1,9 +1,11 @@
 <template>
     <div class="main-page">
         <headerBar></headerBar>
-        <postList :postList="post_list"></postList>
-        <postAdd></postAdd>
-        <button @click="resetDataBase">reset data base</button>
+        <div class="body-page">
+            <postList :postList="post_list"></postList>
+            <postAdd></postAdd>
+        </div>
+            <button @click="resetDataBase">reset data base</button>
     </div>
 </template>
 
@@ -18,7 +20,7 @@ export default {
     components: {
     postList,
     postAdd,
-    headerBar
+    headerBar,
     },
     data() {
     return {
@@ -55,5 +57,8 @@ html, body {
     margin:0px;
 }
 
-
+.body-page {
+    display: flex;
+    justify-content: space-evenly;
+}
 </style>
