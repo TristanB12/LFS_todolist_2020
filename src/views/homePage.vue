@@ -1,21 +1,24 @@
 <template>
     <div class="main-page">
-    <postList :postList="post_list"></postList>
-    <postAdd></postAdd>
-    <button @click="resetDataBase">reset data base</button>
+        <headerBar></headerBar>
+        <postList :postList="post_list"></postList>
+        <postAdd></postAdd>
+        <button @click="resetDataBase">reset data base</button>
     </div>
 </template>
 
 <script>
 import postList from "@/components/postList.vue";
 import postAdd from "@/components/postAdd.vue";
+import headerBar from '@/components/headerBar.vue';
 import axios from "axios";
 
 export default {
     name: "mainPage",
     components: {
     postList,
-    postAdd
+    postAdd,
+    headerBar
     },
     data() {
     return {
@@ -48,16 +51,9 @@ export default {
 </script>
 
 <style>
-.main-page {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    margin-top: 60px;
+html, body {
+    margin:0px;
 }
 
-.main-title {
-    font-size: 70px;
-    text-decoration: underline;
-}
+
 </style>

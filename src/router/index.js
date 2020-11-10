@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import loginPage from '@/views/loginPage.vue';
 import login from '@/components/login.vue';
 import signUp from '@/components/signUp.vue';
+import homePage from '@/views/homePage';
 
 Vue.use(VueRouter)
 
@@ -11,6 +12,11 @@ const routes = [
     path: '/',
     redirect: '/login-page',
     name: 'default'
+  },
+  {
+    path: "/home-page/:username",
+    name: "home-page",
+    component: homePage,
   },
   {
     path: '/login-page',

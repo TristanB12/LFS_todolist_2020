@@ -30,7 +30,6 @@
 
 .circular-image {
     display: inline-block;
-    position: relative;
     margin-right: 8px;
     width: 50px;
     height: 50px;

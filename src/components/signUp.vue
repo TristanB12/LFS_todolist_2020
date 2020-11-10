@@ -2,17 +2,20 @@
     <div class="sign-up">
         <h2>Create your account</h2>
         <input type="text" placeholder="Username" v-model="username_input">
+        <p class="error-message" v-if="!username_valid">This username already exist</p>
         <input type="text" placeholder="Mail" v-model="mail_input">
         <p class="error-message" v-if="!mail_valid">use a correct mail adress format</p>
         <input type="password" placeholder="Password" v-model="password_input">
         <p class="error-message" v-if="!password_valid">password should contain:<br>one digit<br>one lowercase<br>one uppercase<br>at least 8 characters</p>
         <input class="confirm-password" type="password" placeholder="Confirm password" v-model="confirm_password_input">
         <p class="error-message" v-if="!confirm_password_valid">passwords are differents</p>
-        <button v-if="can_be_create" class="create-account">Create Account</button>
+        <button v-if="can_be_create" class="create-account" @click="testUsername">Create Account</button>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+
     export default {
         name: 'signUp',
         data() {
@@ -22,6 +25,7 @@
                 password_input: '',
                 confirm_password_input: '',
                 can_be_create: false,
+                username_valid: true,
                 mail_valid: true,
                 password_valid: true,
                 confirm_password_valid: true,
@@ -52,10 +56,30 @@
                 else
                     this.can_be_create = false;
             },
+            signUp(response) {
+                if(response == null) {
+                    axios.post('http://localhost:3000/api/signup', {
+                        username: this.username_input,
+                        mail: this.mail_input,
+                        password: this.password_input,
+                    })
+                    .then(response => console.log(response))
+                    .catch(error => console.log(error));
+                    this.$router.replace({name: 'login'});
+                }
+                else
+                    this.username_valid = false;
+            },
+            testUsername() {
+                axios.post('http://localhost:3000/api/signup/username', {
+                    username: this.username_input
+                    })
+                    .then(response => this.signUp(response.data.exist))
+                    .catch(error => console.log(error));
+            }
         },
         beforeUpdate () {
             this.lookIfMailIsValid();
-            this.lookIfPasswordIsValid();
             this.lookIfConfirmPasswordIsValid();
             this.lookIfButtonCreateCanAppear();
         },

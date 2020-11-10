@@ -3,30 +3,48 @@
         <img src="@/assets/user-logo.png" alt="user logo">
         <input type="text" placeholder="Username" v-model="username_input"/>
         <input class ="password" type="password" placeholder="Password" v-model="password_input"/>
-        <button v-if="can_login">Log in</button>
+        <p class="error-message" v-if="!identifers_valid">Username or password are invalid</p>
+        <button v-if="can_login" @click="checkIdentifiers">Log in</button>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+
     export default {
         name: 'login',
         data() {
             return {
                 username_input: '',
                 password_input: '',
+                identifers_valid: true,
                 can_login: false,
             }
         },
         methods: {
-            canLogin() {
+            canLoginButtonAppear() {
                 if(this.username_input != '' && this.password_input != '')
                     this.can_login = true;
                 else
                     this.can_login = false;
+            },
+            login(response) {
+                if(response.data.exist == null)
+                    this.identifers_valid = false;
+                else
+                    this.$router.push({path: `/home-page/:${this.username_input}`});
+            },
+            checkIdentifiers() {
+                axios.post('http://localhost:3000/api/login', {
+                    username: this.username_input,
+                    password: this.password_input,
+                })
+                .then(response => this.login(response))
+                .catch(error => console.log(error));
             }
         },
         beforeUpdate () {
-            this.canLogin();
+            this.canLoginButtonAppear();
         },
     }
 </script>
@@ -58,6 +76,12 @@ input {
     border: 2px solid #f1f2f6;
     outline: none;
     color: #57606f;
+}
+
+.error-message {
+    margin: auto;
+    margin-top: 10px;
+    color: red;
 }
 
 .password {
