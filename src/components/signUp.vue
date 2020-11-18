@@ -58,7 +58,7 @@ import axios from 'axios'
             },
             signUp(response) {
                 if(response == null) {
-                    axios.post('http://localhost:3000/api/signup', {
+                    axios.post('http://localhost:3000/api/user-connection/signup', {
                         username: this.username_input,
                         mail: this.mail_input,
                         password: this.password_input,
@@ -71,7 +71,7 @@ import axios from 'axios'
                     this.username_valid = false;
             },
             testUsername() {
-                axios.post('http://localhost:3000/api/signup/username', {
+                axios.post('http://localhost:3000/api/user-connection/signup/username', {
                     username: this.username_input
                     })
                     .then(response => this.signUp(response.data.exist))

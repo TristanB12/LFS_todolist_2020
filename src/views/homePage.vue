@@ -36,7 +36,7 @@ export default {
     },
     resetDataBase() {
         axios
-        .get("http://localhost:3000/api/reset")
+        .get("http://localhost:3000/api/posts/reset")
         .then(response => console.log(response))
         .catch(error => console.log(error));
         this.post_list = [];

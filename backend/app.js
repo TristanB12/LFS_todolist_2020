@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const Post = require('./models/Post');
-const User = require('./models/User');
+const postsRoutes = require('./routes/posts');
+const userConnectionRoutes = require('./routes/userConnection');
+
 
 mongoose.connect('mongodb+srv://tristan:dellenger974@cluster0.zqx31.mongodb.net/Cluster0?retryWrites=true&w=majority',
 {   useNewUrlParser: true,
@@ -22,58 +23,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.post('/api/posts/add', (req, res, next) => {
-    const post = new Post({
-        ...req.body
-    });
-    post.save()
-    .then(() => res.status(201).json({ message: 'post created'}))
-    .catch(error => res.status(400).json({ error }));
-});
+app.use('/api/posts', postsRoutes);
+app.use('/api/user-connection', userConnectionRoutes);
 
-app.post('/api/posts/like', (req, res, next) => {
-    Post.updateOne({_id: req.body.id}, {stats: req.body.stats, liked: true, _id: req.body.id})
-    .then(() => res.status(200).json({message: 'post liked'}))
-    .catch(error => res.status(400).json({error}));
-});
-
-app.post('/api/posts/unlike', (req, res, next) => {
-    Post.updateOne({_id: req.body.id}, {stats: req.body.stats, liked: false, _id: req.body.id})
-    .then(() => res.status(200).json({message: 'post liked'}))
-    .catch(error => res.status(400).json({error}));
-});
-
-
-app.post('/api/signup/username', (req, res, next) => {
-    User.findOne({username: req.body.username})
-        .then(response => res.status(200).json({exist: response}))
-        .catch(error => res.status(400).json({error}))
-});
-
-app.post('/api/login', (req, res, next) => {
-    User.findOne({username: req.body.username} && {password: req.body.password})
-        .then(response => res.status(200).json({exist: response}))
-        .catch(error => res.status(400).json({error}))
-});
-
-app.post('/api/signup', (req, res, next) => {
-    const user = new User({
-        ...req.body
-    })
-    user.save()
-        .then(() => res.status(201).json({message: 'user created !'}))
-        .catch(error => res.status(400).json({error}));
-})
-
-app.use('/api/reset', (req, res, next) => {
-    Post.deleteMany({ photo: null })
-        .then(() => res.status(200).json({message: 'data base reseted'}))
-        .catch(error => res.status(400).json({error}));
-});
-
-app.use('/api/posts', (req, res, next) => {
-    Post.find()
-        .then(posts => res.status(200).json({ posts }))
-        .catch(error => res.status(400).json({ error }));
-});
 module.exports = app;
