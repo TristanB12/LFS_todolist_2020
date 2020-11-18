@@ -35,7 +35,7 @@ import axios from 'axios'
                     this.$router.push({path: `/home-page/:${this.username_input}`});
             },
             checkIdentifiers() {
-                axios.post('http://localhost:3000/api/user-connection/login', {
+                axios.post('http://localhost:3000/api/user-connexion/login', {
                     username: this.username_input,
                     password: this.password_input,
                 })

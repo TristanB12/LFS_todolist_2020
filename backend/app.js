@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const postsRoutes = require('./routes/posts');
-const userConnectionRoutes = require('./routes/userConnection');
+const userConnectionRoutes = require('./routes/userConnexion');
 
 
 mongoose.connect('mongodb+srv://tristan:dellenger974@cluster0.zqx31.mongodb.net/Cluster0?retryWrites=true&w=majority',
@@ -24,6 +24,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use('/api/posts', postsRoutes);
-app.use('/api/user-connection', userConnectionRoutes);
+app.use('/api/user-connexion', userConnectionRoutes);
 
 module.exports = app;
